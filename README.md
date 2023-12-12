@@ -1,4 +1,4 @@
-# A repository DSA (and related) problems and solutions
+# DSA (and related) problems and solutions
 
 ## Format
 
