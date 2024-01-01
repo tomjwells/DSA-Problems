@@ -1,4 +1,3 @@
-import math
 # Add any extra import statements you may need here
 
 
@@ -8,54 +7,57 @@ alphabet = "abcdefghijklmnopqrstuvwxyz"
 ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 numberbet = "0123456789"
 
-def rotationalCipher(input_str, rotation_factor):
+
+def rotationalCipher(input_str: str, rotation_factor: int):
   # Write your code here
   output_str = ""
   for char in input_str:
     if char in numberbet:
-      output_str += numberbet[(numberbet.find(char)+rotation_factor) % len(numberbet)]
+      output_str += numberbet[
+          (numberbet.find(char) + rotation_factor) % len(numberbet)
+      ]
     elif char in ALPHABET:
-      output_str += ALPHABET[(ALPHABET.find(char)+rotation_factor) % len(ALPHABET)]
+      output_str += ALPHABET[
+          (ALPHABET.find(char) + rotation_factor) % len(ALPHABET)
+      ]
     elif char in alphabet:
-      output_str += alphabet[(alphabet.find(char)+rotation_factor) % len(alphabet)]
+      output_str += alphabet[
+          (alphabet.find(char) + rotation_factor) % len(alphabet)
+      ]
     else:
       output_str += char
   return output_str
 
 
-
-
-
-
-
-
-
-
-
 # These are the tests we use to determine if the solution is correct.
 # You can add your own at the bottom.
 
-def printString(string):
-  print('[\"', string, '\"]', sep='', end='')
+
+def printString(string: str):
+  print('["', string, '"]', sep="", end="")
+
 
 test_case_number = 1
 
-def check(expected, output):
+
+def check(expected: str, output: str):
   global test_case_number
   result = False
   if expected == output:
     result = True
-  rightTick = '\u2713'
-  wrongTick = '\u2717'
+  rightTick = "\u2713"
+  wrongTick = "\u2717"
   if result:
-    print(rightTick, 'Test #', test_case_number, sep='')
+    print(rightTick, "Test #", test_case_number, sep="")
   else:
-    print(wrongTick, 'Test #', test_case_number, ': Expected ', sep='', end='')
+    print(wrongTick, "Test #", test_case_number,
+          ": Expected ", sep="", end="")
     printString(expected)
-    print(' Your output: ', end='')
+    print(" Your output: ", end="")
     printString(output)
     print()
   test_case_number += 1
+
 
 if __name__ == "__main__":
   input_1 = "All-convoYs-9-be:Alert1."
@@ -71,4 +73,3 @@ if __name__ == "__main__":
   check(expected_2, output_2)
 
   # Add your own test cases here
-  

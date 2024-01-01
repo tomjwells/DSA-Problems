@@ -1,15 +1,16 @@
-import math
+from typing import List
+
 # Add any extra import statements you may need here
 
 
 # Add any helper functions you may need here
 
 
-def getMilestoneDays(revenues, milestones):
+def getMilestoneDays(revenues: List[int], milestones: List[int]) -> List[int]:
   # Write your code here
-  
+
   running_total = 0
-  output = []
+  output: List[int] = []
   revenues_sorted = revenues.copy()
   revenues_sorted.sort()
   sorted_milestones = milestones.copy()
@@ -17,44 +18,41 @@ def getMilestoneDays(revenues, milestones):
   for i in range(len(revenues)):
     running_total += revenues[i]
     if len(sorted_milestones) > 0 and running_total >= sorted_milestones[0]:
-      output.append(i+1)
+      output.append(i + 1)
       sorted_milestones.pop(0)
       for milestone in sorted_milestones:
         if running_total >= milestone:
-          output.append(i+1)
+          output.append(i + 1)
           sorted_milestones.pop(0)
-  
-  unsorted_output = []
+
+  unsorted_output: List[int] = []
   sorted_milestones = milestones.copy()
   sorted_milestones.sort()
   for i in range(len(output)):
     unsorted_output.append(output[sorted_milestones.index(milestones[i])])
-  
-  return unsorted_output if len(unsorted_output) > 0 else -1
-  
-  
-  
-  
-  
-  
-  
-  
+
+  # Slight type inconsistency in the question
+  return unsorted_output if len(unsorted_output) > 0 else [-1]
+
 
 # These are the tests we use to determine if the solution is correct.
 # You can add your own at the bottom.
 
-def printIntegerList(array):
+
+def printIntegerList(array: List[int]):
   size = len(array)
-  print('[', end='')
+  print("[", end="")
   for i in range(size):
     if i != 0:
-      print(', ', end='')
-    print(array[i], end='')
-  print(']', end='')
+      print(", ", end="")
+    print(array[i], end="")
+  print("]", end="")
+
 
 test_case_number = 1
 
-def check(expected, output):
+
+def check(expected: List[int], output: List[int]):
   global test_case_number
   expected_size = len(expected)
   output_size = len(output)
@@ -62,18 +60,20 @@ def check(expected, output):
   if expected_size != output_size:
     result = False
   for i in range(min(expected_size, output_size)):
-    result &= (output[i] == expected[i])
-  rightTick = '\u2713'
-  wrongTick = '\u2717'
+    result &= output[i] == expected[i]
+  rightTick = "\u2713"
+  wrongTick = "\u2717"
   if result:
-    print(rightTick, 'Test #', test_case_number, sep='')
+    print(rightTick, "Test #", test_case_number, sep="")
   else:
-    print(wrongTick, 'Test #', test_case_number, ': Expected ', sep='', end='')
+    print(wrongTick, "Test #", test_case_number,
+          ": Expected ", sep="", end="")
     printIntegerList(expected)
-    print(' Your output: ', end='')
+    print(" Your output: ", end="")
     printIntegerList(output)
     print()
   test_case_number += 1
+
 
 if __name__ == "__main__":
   revenues_1 = [100, 200, 300, 400, 500]
@@ -83,10 +83,9 @@ if __name__ == "__main__":
   check(expected_1, output_1)
 
   revenues_2 = [700, 800, 600, 400, 600, 700]
-  milestones_2 = [3100, 2200, 800, 2100, 1000] 
+  milestones_2 = [3100, 2200, 800, 2100, 1000]
   expected_2 = [5, 4, 2, 3, 2]
   output_2 = getMilestoneDays(revenues_2, milestones_2)
   check(expected_2, output_2)
 
   # Add your own test cases here
-  

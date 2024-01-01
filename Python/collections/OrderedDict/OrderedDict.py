@@ -1,12 +1,17 @@
 from collections import OrderedDict
 
-odict = OrderedDict()
+odict: OrderedDict[str, str] = OrderedDict()
 
 odict["key1"] = "value1"
 odict["key2"] = "value2"
 odict["key3"] = "value3"
 
 print(odict)
+
+# Basic Operations
+# Number of Elements
+len_odict = len(odict)
+print(len_odict)
 
 # If you want to get keys or a particular item, it turns out there is no canonical way.
 # Here are some suggestions

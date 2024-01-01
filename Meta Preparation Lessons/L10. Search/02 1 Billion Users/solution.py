@@ -1,60 +1,56 @@
-import math
+from typing import List
+
 # Add any extra import statements you may need here
 
 
 # Add any helper functions you may need here
 
 
-def getBillionUsersDay(growthRates):
+def getBillionUsersDay(growthRates: List[float]):
   # Write your code here
-  
+
   t = 0
   while True:
     s = 0
     for g in growthRates:
-      s += g ** t
+      s += g**t
     if s >= 1e9:
       break
-    else: 
+    else:
       t += 1
 
   return t
 
 
-
-
-
-
-
-
-
-
-
-
 # These are the tests we use to determine if the solution is correct.
 # You can add your own at the bottom.
 
-def printInteger(n):
-  print('[', n, ']', sep='', end='')
+
+def printInteger(n: int):
+  print("[", n, "]", sep="", end="")
+
 
 test_case_number = 1
 
-def check(expected, output):
+
+def check(expected: int, output: int):
   global test_case_number
   result = False
   if expected == output:
     result = True
-  rightTick = '\u2713'
-  wrongTick = '\u2717'
+  rightTick = "\u2713"
+  wrongTick = "\u2717"
   if result:
-    print(rightTick, 'Test #', test_case_number, sep='')
+    print(rightTick, "Test #", test_case_number, sep="")
   else:
-    print(wrongTick, 'Test #', test_case_number, ': Expected ', sep='', end='')
+    print(wrongTick, "Test #", test_case_number,
+          ": Expected ", sep="", end="")
     printInteger(expected)
-    print(' Your output: ', end='')
+    print(" Your output: ", end="")
     printInteger(output)
     print()
   test_case_number += 1
+
 
 if __name__ == "__main__":
   test_1 = [1.1, 1.2, 1.3]
@@ -68,4 +64,3 @@ if __name__ == "__main__":
   check(expected_2, output_2)
 
   # Add your own test cases here
-  

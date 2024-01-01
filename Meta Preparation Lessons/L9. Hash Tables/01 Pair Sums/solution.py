@@ -1,19 +1,19 @@
-import math
+from typing import List
+
 # Add any extra import statements you may need here
 
 
 # Add any helper functions you may need here
 
 
-
-def numberOfWays(arr, k):
+def numberOfWays(arr: List[int], k: int) -> int:
   # Write your code here
-  HashMap = {}
-  number_of_ways = 0
+  HashMap: dict[int, int] = {}
+  number_of_ways: int = 0
   for i in range(len(arr)):
     # el1 + el2 = k => el1 = k - el2
-    if k-arr[i] in HashMap:
-      number_of_ways += HashMap[k-arr[i]]
+    if k - arr[i] in HashMap:
+      number_of_ways += HashMap[k - arr[i]]
       # Also increment in this case
       if arr[i] in HashMap:
         HashMap[arr[i]] += 1
@@ -27,40 +27,35 @@ def numberOfWays(arr, k):
   return number_of_ways
 
 
-
-
-
-
-
-
-
-
-
-
 # These are the tests we use to determine if the solution is correct.
 # You can add your own at the bottom.
 
-def printInteger(n):
-  print('[', n, ']', sep='', end='')
+
+def printInteger(n: int):
+  print("[", n, "]", sep="", end="")
+
 
 test_case_number = 1
 
-def check(expected, output):
+
+def check(expected: int, output: int):
   global test_case_number
   result = False
   if expected == output:
     result = True
-  rightTick = '\u2713'
-  wrongTick = '\u2717'
+  rightTick = "\u2713"
+  wrongTick = "\u2717"
   if result:
-    print(rightTick, 'Test #', test_case_number, sep='')
+    print(rightTick, "Test #", test_case_number, sep="")
   else:
-    print(wrongTick, 'Test #', test_case_number, ': Expected ', sep='', end='')
+    print(wrongTick, "Test #", test_case_number,
+          ": Expected ", sep="", end="")
     printInteger(expected)
-    print(' Your output: ', end='')
+    print(" Your output: ", end="")
     printInteger(output)
     print()
   test_case_number += 1
+
 
 if __name__ == "__main__":
   k_1 = 6
@@ -76,4 +71,3 @@ if __name__ == "__main__":
   check(expected_2, output_2)
 
   # Add your own test cases here
-  
