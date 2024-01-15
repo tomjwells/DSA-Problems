@@ -1,16 +1,19 @@
-from typing import Any
+from typing import Self
 
 
 class ListNode:
-  def __init__(self, val: Any):
+  val: int
+  next: Self | None
+
+  def __init__(self, val: int):
     self.val = val
     self.next = None
 
 
-# Implementation for Singly Linked List
-
-
 class LinkedList:
+  """
+    Implementation for Singly Linked List
+  """
   head: ListNode
   next: ListNode
   tail: ListNode
@@ -21,7 +24,7 @@ class LinkedList:
     self.head = ListNode(-1)
     self.tail = self.head
 
-  def insertEnd(self, val: Any):
+  def insertEnd(self, val: int):
     self.tail.next = ListNode(val)
     self.tail = self.tail.next
 
@@ -33,7 +36,7 @@ class LinkedList:
       curr = curr.next
 
     # Remove the node ahead of curr
-    if curr:
+    if curr and curr.next:
       curr.next = curr.next.next
 
   def print(self):
