@@ -9,7 +9,6 @@ class Solution:
     for num in nums:
       counter_dict[num] += 1
 
-    # I don't think this is elegant because I can't really remember this
-    sorted_counter = sorted(counter_dict.items(),
-                            key=lambda x: x[1], reverse=True)
-    return [sorted_counter[i][0] for i in range(k)]
+    sorted_list = sorted(counter_dict.items(),
+                         key=lambda x: x[1], reverse=True)
+    return [sorted_list[i][0] for i in range(k)]

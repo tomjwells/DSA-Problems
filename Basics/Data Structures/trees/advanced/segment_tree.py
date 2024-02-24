@@ -1,10 +1,14 @@
-from typing import List, Optional, Self
+from __future__ import annotations
+
+from typing import List, Optional
 
 
 class SegmentTree:
   sum: int
-  left: Optional[Self]
-  right: Optional[Self]
+  # left: 'Optional[SegmentTree]'
+  # right: 'Optional[SegmentTree]'
+  left: Optional[SegmentTree]
+  right: Optional[SegmentTree]
   L: int
   R: int
 

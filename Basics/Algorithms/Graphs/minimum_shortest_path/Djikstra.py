@@ -7,20 +7,29 @@ from typing import List
 # graph. There are n nodes in the graph.
 # O(E * logV), O(E * logE) is also correct.
 
+Edges = List[List[int]]
+AdjacencyListItem = List[List[int]]
+AdjacencyList = dict[int, AdjacencyListItem]
 
-def shortestPath(edges: List[List[int]], n: int, src: int):
+
+def convertToAdjacencyList(edges: Edges, n: int) -> AdjacencyList:
   # Convert the list of edges into an adjacency list
-  adj: dict[int, List[List[int]]] = {}
+  adj: AdjacencyList = {}
   for i in range(1, n + 1):
     adj[i] = []
 
   # s = source, d = destination node, w = weight
   for s, d, w in edges:
     adj[s].append([d, w])
+  return adj
+
+
+def shortestPath(edges: Edges, n: int, src: int):
+  adj = convertToAdjacencyList(edges, n)
 
   #
   shortest: dict[int, int] = {}
-  minHeap: List[List[int]] = [[0, src]]
+  minHeap: Edges = [[0, src]]
   while minHeap:
     w1, n1 = heapq.heappop(minHeap)
     if n1 in shortest:
